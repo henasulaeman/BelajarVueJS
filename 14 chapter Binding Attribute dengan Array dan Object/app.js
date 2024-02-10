@@ -1,0 +1,27 @@
+var app = new Vue({
+    el:'#app',
+    data: {
+        maximum:50,
+        products: null,
+        cart: [],
+        style:{
+            label: ['font-weight-bold',' mr-2']
+        }
+    },
+    // Fungsi event mounted adalah ketika di deklerasikan maka code yang 
+    // di dalam mounted akan secara otomatis terload
+    // Even yang terjadi pada saat objek di buat dan template sudah siap di render
+    mounted: function() {
+        fetch('https://hplussport.com/api/products/order/price')
+        .then(response => response.json())
+        .then(data => {
+            this.products = data;
+        });
+    },
+    // Contoh Method
+    methods: {
+        addItem: function (product){
+            this.cart.push(product);
+        }
+    }
+});
