@@ -1,3 +1,13 @@
+//16) Componen
+Vue.component('price', {
+    data: function(){
+        return {}
+    },
+    props: ['value','prefix','precision'],
+    template: `<span> {{this.prefix + Number.parseFloat(this.value).toFixed(2)}} </span>`
+});
+
+
 var app = new Vue({
     el:'#app',
     data: {
@@ -65,14 +75,13 @@ var app = new Vue({
             }else{
                 this.cart.push({product:product, qty:1});
             }
-            
         },
-        deleteItem: function (key){
+
+        deleteItem: function (key) {
             if (this.cart[key].qty > 1){
                 this.cart[key].qty--;
-
             }else{
-                this.cart.splace(key, 1);
+                this.cart.splice(key, 1);
             }
         }
     }
